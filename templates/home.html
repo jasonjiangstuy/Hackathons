@@ -34,20 +34,24 @@
             x.innerHTML="Geolocation is not supported by this browser.";
           }
       }
-
+      var yco, xco
       function showPosition(position){
-        x.innerHTML="Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+        yco = position.coords.latitude;
+        xco = position.coords.longitude;
+        x.innerHTML="Latitude: " + yco +
+        "<br>Longitude: " + xco;
+        console.log([yco, xco]);
+
       }
 
-      getLocation()
+       getLocation()
 
 //---- get location of user//
         function initMap() {
 
           var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 3,
-            center: {lat: -28.024, lng: 140.887}
+            zoom: 9,
+            center: {lat: yco, lng: xco}
           });
 
           // Create an array of alphabetical characters used to label the markers.
