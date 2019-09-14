@@ -15,7 +15,6 @@
                           <li><a href="./contact">Contact</a></li>
                           <li><a href="./login">Log-In</a></li>
                           <li><a href="./upload">Upload</a></li>
-                          <li><img id='logo' src="https://www.snopes.com/tachyon/2019/07/olympics-logo-fake-snopes.jpg?resize=100,50" alt=""></li>
                       </ul>
                   </li>
               </ul>
@@ -31,10 +30,13 @@
                 x.innerHTML="Geolocation is not supported by this browser.";
               }
           }
-
+          var xx
+          var yy
           function showPosition(position){
-            x.innerHTML="Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude;
+            xx = position.coords.latitude
+            yy = position.coords.longitude
+            x.innerHTML="Latitude: " + xx +
+            "<br>Longitude: " + yy;
           }
 
           getLocation()
@@ -51,14 +53,22 @@
         <form action="/upload" method="POST">
             <br>
             <h3>Write your x coords</h3>
-            <input type="text" name="x" class="textbox">
+            <input type="text" id="x" name="x" class="textbox">
             <br>
             <h3>Write your y coords</h3>
-            <input type="text" name="y" class="textbox">
+            <input type="text" id="y" name="y" class="textbox">
             <br>
             <br>
             <input type="submit" value="Submit" id="submit">
+            <input type="button" name="test" value="populate with curret location" onclick="populate()">
         </form>
+        <script>
+    function populate(){
+        document.getElementById('x').value=xx;  //set username
+        document.getElementById('y').value=yy; //setpassword
+        document.forms["formID"].submit();  //submit 'formID'
+    }
+</script>
 
 </div>
 
