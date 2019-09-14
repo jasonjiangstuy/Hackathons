@@ -33,11 +33,11 @@ class Home(webapp2.RequestHandler):
 #     def get(self):
 #         defaultdatas()
 #
-# class LoginPage(webapp2.RequestHandler):
-#     def get(self):
-#         homepage = the_jinja_env.get_template('/templates/login.html')
-#         self.response.write(homepage.render())
-#         print('get request completed')
+class LoginPage(webapp2.RequestHandler):
+     def get(self):
+         homepage = the_jinja_env.get_template('/templates/login.html')
+         self.response.write(homepage.render())
+         print('get request completed')
 #
 #     def post(self):
 #         print('starting authentication')
@@ -100,6 +100,6 @@ app = webapp2.WSGIApplication([
 ('/upload',UploadLocation),
 # ('/load', loadImages),
 ('/contact',Contact)
-# ,
-# ('/login',LoginPage)
+ ,
+ ('/login',LoginPage)
 ], debug=True)

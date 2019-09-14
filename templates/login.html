@@ -2,7 +2,7 @@
    <html lang="en" dir="ltr">
        <head>
            <meta charset="UTF-8">
-           <title>Transparent Login</title>
+           <title>Transparent About Us</title>
            <link rel="stylesheet" href="/css/login.css">
             <meta name="google-signin-scope" content="profile email">
            <meta name="google-signin-client_id" content="241340643815-b5ill5ncpsagh5qq9p64q5ifb7ps341r.apps.googleusercontent.com">
@@ -15,88 +15,16 @@
                 <ul>
 
                           <li><a href="./contact">Contact</a></li>
-                          <li><a href="./login">Log-In</a></li>
+                          <li><a href="./login">about-us</a></li>
                           <li><a href="./upload">Upload</a></li>
-                          <li><img id='logo' src="https://www.snopes.com/tachyon/2019/07/olympics-logo-fake-snopes.jpg?resize=100,50" alt=""></li>
+                          <li><img id='logo' src="../waterlogo.png" alt=""></li>
                       </ul>
                   </li>
               </ul>
           </nav>
-
-<div id="login_area"><br>
-
-    <div class="login-box">
-            <h1>login</h1>
-        <div class="textbox">
-           <i class="fas fa-user"></i>
-            <input type="text" placeholder="username" name="" value="">
-        </div>
-
-        <div class="textbox">
-
-            <input type="password" placeholder="password" name="" value="">
-        </div>
-
-
-
-        <input class="btn" type="button" name="" value="sign in">
-
-                <div>
-
-                  <br><br><!--google sign in button-->
-                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
-        <div>
-<!--google signout button -->
-<a href="/" onclick="signOut();">Sign out</a>
-        </div>
-        </div>
-
-</div>
-
-
-        <script src="https://apis.google.com/js/platform.js">
-            gapi.load('auth2', function(0) {gapi.auth2.init();})
-        </script><!-- error solved init and function must be seperated 8/19/19-->
-        <script>
-            function onSignIn(googleUser) {
-            console.log('starting post sign in')
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());//use to display hi (name)
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            //getting id token to send to server
-            var id_token = googleUser.getAuthResponse().id_token;
-
-            //sending id token to server
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/login');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-            console.log('Signed in as: ' + xhr.responseText);
-            };
-
-            xhr.send('idtoken=' + id_token);
-
-
-            }
-
-
-        </script>
-
-
-
-
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script>
-
+<hr>
+<br>
+<div style:text-align=center>At Where's my Water, we believe that we can give people the most convenient alternative to water bottles, which contribute nearly 40% of our plastic waste is from single-use water bottles. We can provide the means to a world where everybody can contribute to help the community, as well as others outside of the community, into a new world where single-use plastics won't dominate our decisions. We can be a catalyst for people to help sustain our environment for future generations to come."
+    </div>
 </body>
 </html>
