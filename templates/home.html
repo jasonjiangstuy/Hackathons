@@ -7,25 +7,42 @@
   </head>
   <body>
     <nav>
-        <p> <a href="/">MosaicTokyo</a> </p>
+        <p> <a href="/">Where is my Water</a> </p>
 
       <ul>
                 <li><a href="./contact">Contact</a></li>
                 <li><a href="./login">Log-In</a></li>
                 <li><a href="./addImage">Upload</a></li>
-                <li><img id='logo' src="https://www.snopes.com/tachyon/2019/07/olympics-logo-fake-snopes.jpg?resize=100,50" alt=""></li>
+                <li><img id='logo' src="Waterlogo.png" alt=""></li>
             </ul>
         </li>
     </ul>
 </nav>
 <center>
-</center>
+<div id="show"></div>
 
 
   <div id="map"></div>
 
       <script>
-//----
+      var x=document.getElementById("show");
+      function getLocation(){
+          if (navigator.geolocation){
+              navigator.geolocation.getCurrentPosition(showPosition);
+            }
+          else{
+            x.innerHTML="Geolocation is not supported by this browser.";
+          }
+      }
+
+      function showPosition(position){
+        x.innerHTML="Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+      }
+
+      getLocation()
+
+//---- get location of user//
         function initMap() {
 
           var map = new google.maps.Map(document.getElementById('map'), {
