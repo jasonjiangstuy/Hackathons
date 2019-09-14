@@ -86,7 +86,8 @@ class UploadLocation(webapp2.RequestHandler):
         # newImage.image_url=imageurl
         # newImage.url=URL
         # newImage.put()
-        homepage = the_jinja_env.get_template('/templates/home.html')
+        homepage = the_jinja_env.get_template('/templates/addImage.html')
+        print(GetImages())
         self.response.write(homepage.render({"images":GetImages()}))
 
 class Contact(webapp2.RequestHandler):
