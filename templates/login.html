@@ -10,21 +10,21 @@
    <body>
 
         <nav>
-                <p> <a href="/">MosaicTokyo </a> </p>
-                
+                <p> <a href="/">Where's my Water </a> </p>
+
                 <ul>
-                            
+
                           <li><a href="./contact">Contact</a></li>
                           <li><a href="./login">Log-In</a></li>
-                          <li><a href="./addImage">Upload</a></li>
+                          <li><a href="./upload">Upload</a></li>
                           <li><img id='logo' src="https://www.snopes.com/tachyon/2019/07/olympics-logo-fake-snopes.jpg?resize=100,50" alt=""></li>
                       </ul>
                   </li>
               </ul>
           </nav>
-          
+
 <div id="login_area"><br>
-          
+
     <div class="login-box">
             <h1>login</h1>
         <div class="textbox">
@@ -41,13 +41,13 @@
 
         <input class="btn" type="button" name="" value="sign in">
 
-                <div> 
-                    
+                <div>
+
                   <br><br><!--google sign in button-->
                   <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
         <div>
-<!--google signout button --> 
+<!--google signout button -->
 <a href="/" onclick="signOut();">Sign out</a>
         </div>
         </div>
@@ -77,7 +77,7 @@
             xhr.onload = function() {
             console.log('Signed in as: ' + xhr.responseText);
             };
-        
+
             xhr.send('idtoken=' + id_token);
 
 

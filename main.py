@@ -2,21 +2,32 @@ import webapp2
 import os
 import random
 import jinja2
-#from database import defaultdatas
-#from app_models import ImageInfo
+# import requests
+# from database import defaultdatas
+from app_models import waterfountain, ANCESTORY_KEY
 
 
 the_jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],autoescape=True)
 
-#
-# def GetImages():
-#     return ImageInfo.query().order(ImageInfo.location).fetch()
+
+def GetImages():
+    return waterfountain.query().fetch()
+
+#make cache
 class Home(webapp2.RequestHandler):
      def get(self):
+
+         # import csv
+         # file = requests.get('https://docs.google.com/spreadsheets/d/1AUYSah_TTgLnju5AsVwhkDylQZJFsssQL90feAjCNRc/export?format=csv')
+         # array = csv.reader(file)
+         # print(array)
+
     #     defaultdatas()
+
          homepage = the_jinja_env.get_template('/templates/home.html')
-         self.response.write(homepage.render())
+         print GetImages()
+         self.response.write(homepage.render({"locations":GetImages()}))
 # {"images":GetImages()}
 # class loadImages(webapp2.RequestHandler):
 #     def get(self):
@@ -59,34 +70,36 @@ class Home(webapp2.RequestHandler):
 #             # Invalid token
 #             print('login: not working')
 #             pass
-#
-# class AddImage(webapp2.RequestHandler):
-#     def get(self):
-#         homepage = the_jinja_env.get_template('/templates/addImage.html')
-#         self.response.write(homepage.render())
-#
-#     def post(self):
-#         location = int(self.request.get('location'))
-#         imageurl= self.request.get('image_url')
-#         URL= self.request.get('website_url')
-#         print location
-#         newImage=ImageInfo.query(ImageInfo.location==location).get()
-#         newImage.image_url=imageurl
-#         newImage.url=URL
-#         newImage.put()
-#         homepage = the_jinja_env.get_template('/templates/home.html')
-#         self.response.write(homepage.render({"images":GetImages()}))
-#
-# class Contact(webapp2.RequestHandler):
-#     def get(self):
-#         t = the_jinja_env.get_template('templates/contact.html')
-#         self.response.write(t.render())
+
+class UploadLocation(webapp2.RequestHandler):
+    def get(self):
+        homepage = the_jinja_env.get_template('/templates/addImage.html')
+        self.response.write(homepage.render())
+
+    def post(self):
+        x = float(self.request.get('x'))
+        y= float(self.request.get('y'))
+
+        print x, y
+        waterfountain(parent=ANCESTORY_KEY, xcoords=x, ycoords=y).put()
+        # newImage=ImageInfo.query(ImageInfo.location==location).get()
+        # newImage.image_url=imageurl
+        # newImage.url=URL
+        # newImage.put()
+        homepage = the_jinja_env.get_template('/templates/home.html')
+        self.response.write(homepage.render({"images":GetImages()}))
+
+class Contact(webapp2.RequestHandler):
+    def get(self):
+        t = the_jinja_env.get_template('templates/contact.html')
+        self.response.write(t.render())
 
 app = webapp2.WSGIApplication([
 ('/',Home)
-# ,
-# ('/addImage',AddImage),
+,
+('/upload',UploadLocation),
 # ('/load', loadImages),
-# ('/contact',Contact),
+('/contact',Contact)
+# ,
 # ('/login',LoginPage)
 ], debug=True)
