@@ -39,7 +39,6 @@
         yco = position.coords.latitude;
         xco = position.coords.longitude;
         console.log([yco, xco]);
-
       }
 
        getLocation()
@@ -53,12 +52,8 @@
           });
           infoWindow = new google.maps.InfoWindow;
           // Create an array of alphabetical characters used to label the markers.
-          var labels = 'MW';
-
-          var pos = {
-          lat: yco,
-          lng: xco
-          };
+          var labels = 'ABCDEFGHIJKLMNOPQRSTUVWSYZ';
+          var pos = {lat: yco, lng: xco};
 
           infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
