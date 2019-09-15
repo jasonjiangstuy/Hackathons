@@ -6,8 +6,10 @@ body{
  h1{
      color: grey
  }
- #logo{
-margin-right:700px;
+#logo{
+margin-right:20px;
+width:3em;
+height:3em;
  }
 #login_area{
     width: 100%;
@@ -53,8 +55,12 @@ margin-right:700px;
     line-height: 45px;
     float: left;
     padding: 0px 20px;
+    width:auto;
   }
-  
+  nav p{
+      width:auto;
+  }
+
   nav ul li {
     float: left;
   }
@@ -102,4 +108,11 @@ margin-right:700px;
       border-style:inset;
       border-width: 4px 0px 0px 0px;
       padding-top: 2%;
+  }
+  #id {
+      margin-left:20%;
+      margin-right:20%;
+  }
+  h1 {
+      margin-left:20%;
   }
