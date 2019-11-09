@@ -27,8 +27,11 @@
 
   <div id="map"></div>
 
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWYNykoEI-bVYIgavHIqLYkV5jGy87GQ">
+    </script> a
       <script>
-      
+
       function getLocation(){
           var x=document.getElementById("show");
           if (navigator.geolocation){
@@ -38,58 +41,69 @@
             x.innerHTML="Geolocation is not supported by this browser.";
           }
       }
-      var yco, xco
+
       function showPosition(position){
         yco = position.coords.latitude;
         xco = position.coords.longitude;
-        console.log([yco, xco]);
+        console.log("after: " + [yco, xco]);
+        initMap()
       }
-
+       var yco, xco
        getLocation()
 
 //---- get location of user//
-        function initMap() {
 
+        function initMap() {
+          console.log()
+          console.log("center" + pos)
+          console.log("lat" + yco + "lng" + xco)
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
             center: {lat: yco, lng: xco}
           });
-          infoWindow = new google.maps.InfoWindow;
-          // Create an array of alphabetical characters used to label the markers.
-          var labels = 'ABCDEFGHIJKLMNOPQRSTUVWSYZ';
           var pos = {lat: yco, lng: xco};
-
+          //temp info window
+          infoWindow = new google.maps.InfoWindow;
           infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
           infoWindow.open(map);
+//---- start crop
           // Add some markers to the map.
           // Note: The code uses the JavaScript Array.prototype.map() method to
           // create an array of markers based on a given "locations" array.
           // The map() method here has nothing to do with the Google Maps API.
-          var markers = locations.map(function(location, i) {
-            return new google.maps.Marker({
-              position: location,
-              label: labels[i % labels.length]
-            });
-          });
 
-          // Add a marker clusterer to manage the markers.
-          var markerCluster = new MarkerClusterer(map, markers,
-              {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-        }
-        var locations = [
+//          var iconBase = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
 
-          {%for i in locations%}
-          {lat: {{i.xcoords}}, lng: {{i.ycoords}}},
 
-          {% endfor %}
-        ]
+
+                    var features = [
+
+                          {%for i in locations%}
+
+                          {position: new google.maps.LatLng({{i.xcoords}}, {{i.ycoords}})
+                        } ,
+
+                          {% endfor %}
+                        ]
+
+
+
+                  // Create markers.
+                  for (var i = 0; i < features.length; i++) {
+                    var marker = new google.maps.Marker({
+                      position: features[i].position,
+                      icon: "me.png",
+                      map: map
+                    });
+                  };
+                }
+
+
       </script>
-      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-      </script>
-      <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWYNykoEI-bVYIgavHIqLYkV5jGy87GQ&callback=initMap">
-    </script>
+     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
+
 
 
 

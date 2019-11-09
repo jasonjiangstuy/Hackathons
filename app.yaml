@@ -1,3 +1,4 @@
+
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -5,7 +6,8 @@ threadsafe: yes
 handlers:
 - url: /css
   static_dir: css
-
+- url: /png
+  static_dir: images
 - url: .*
   script: main.app
 
