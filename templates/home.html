@@ -11,8 +11,8 @@
   <body>
     <div class="top_nav">
         <ul class="nav_op_left">
-            <li><a href="" class="nav_a"> WATER </a></li>
-            <li><a href="" class="nav_a"> BATHROOM </a></li>
+            <li><a href="./" class="nav_a"> WATER </a></li>
+            <li><a href="./bathroom" class="nav_a"> BATHROOM </a></li>
         </ul>
     </div>
     <!-- <nav>
@@ -36,12 +36,10 @@
   <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWYNykoEI-bVYIgavHIqLYkV5jGy87GQ">
     </script>
-<<<<<<< HEAD
-=======
+
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
  </script>
 
->>>>>>> 86a2f3bd65bca3d41223f845682b272789aebf87
       <script>
 
       function getLocation(){
@@ -92,7 +90,7 @@
           //image for flags
           var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
-          console.log(markers);
+//          console.log(markers);
 
           //to bounce
           function toggleBounce(markers) {
@@ -104,26 +102,24 @@
           }
 
           // Add a marker clusterer to manage the markers.
-          var markerCluster = new MarkerClusterer(map, markers,
-              {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+                   var markerCluster = new MarkerClusterer(map, markers,
+                       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+                       //finding location of markers
+                       var locations = [
+                         {%for i in locations%}
+                         {lat: {{i.xcoords}}, lng: {{i.ycoords}}},
+                         {% endfor %}
+                       ]
+                       //all markers
 
-              //finding location of markers
-              var locations = [
-                {%for i in locations%}
-                {lat: {{i.xcoords}}, lng: {{i.ycoords}}},
-                {% endfor %}
-              ]
-              //all markers
-              //debugger
-
-              var markers = locations.map(function(location, i) {
-                return new google.maps.Marker({
-                  position: location,
-                  icon: image
-                });
-                console.log("test" + markers);
-                markers[i].addListener('click', toggleBounce(markers[i]));
-              });
+                       var markers = locations.map(function(location, i) {
+                         return new google.maps.Marker({
+                           position: location,
+                           icon: image
+                         });
+                         console.log("test" + markers);
+                         markers[i].addListener('click', toggleBounce(markers[i]));
+                       });
         //drawing line
               //finding shortest distance
               var distance = [999, 999]
@@ -137,7 +133,7 @@
               //ploting closest marker
               var closest = new google.maps.Marker({position: distance, icon: image, map: map});
                 closest.addListener('click', toggleBounce(closest));
-
+debugger
               //drawing line
               var flightPlanCoordinates = [
               pos, distance

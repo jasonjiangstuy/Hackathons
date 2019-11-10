@@ -51,6 +51,10 @@
 
 
         <form action="/upload" method="POST">
+          <select name = "Type">
+            <option value="0">Bathroom</option>
+            <option value="1">WaterFountain</option>
+          </select>
             <br>
             <h3>Write your x coords</h3>
             <input type="text" id="x" name="x" class="textbox">
@@ -60,7 +64,7 @@
             <br>
             <br>
             <input type="submit" value="Submit" id="submit">
-            <input type="button" name="test" value="populate with curret location" onclick="populate()">
+            <input type="button" name="test" value="populate with current location" onclick="populate()">
         </form>
         <script>
     function populate(){

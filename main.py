@@ -4,30 +4,38 @@ import random
 import jinja2
 # import requests
 # from database import defaultdatas
-from app_models import waterfountain, ANCESTORY_KEY
+from app_models import waterfountain, ANCESTORY_KEY, bathroom, ANCESTORY_KEYB
 
 
 the_jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],autoescape=True)
 
-
+#????? #GetImages
 def GetImages():
+    return waterfountain.query().fetch() + bathroom.query().fetch()
+def GetWater():
     return waterfountain.query().fetch()
-
+def GetBath():
+    return bathroom.query().fetch()
+#?????
 #make cache
-class Home(webapp2.RequestHandler):
+class water(webapp2.RequestHandler):
      def get(self):
 
-         # import csv
-         # file = requests.get('https://docs.google.com/spreadsheets/d/1AUYSah_TTgLnju5AsVwhkDylQZJFsssQL90feAjCNRc/export?format=csv')
-         # array = csv.reader(file)
-         # print(array)
+         homepage = the_jinja_env.get_template('/templates/home.html')
+         print "water: "
+         print GetWater()
+         self.response.write(homepage.render({"locations": GetWater()}))
 
-    #     defaultdatas()
+class bath(webapp2.RequestHandler):
+     def get(self):
 
          homepage = the_jinja_env.get_template('/templates/home.html')
-         print GetImages()
-         self.response.write(homepage.render({"locations":GetImages()}))
+         print "bath: " 
+         print GetBath()
+         self.response.write(homepage.render({"locations":GetBath()}))
+
+
 # {"images":GetImages()}
 # class loadImages(webapp2.RequestHandler):
 #     def get(self):
@@ -77,17 +85,18 @@ class UploadLocation(webapp2.RequestHandler):
         self.response.write(homepage.render())
 
     def post(self):
+        type = int(self.request.get('Type'))
         x = float(self.request.get('x'))
         y= float(self.request.get('y'))
 
-        print x, y
-        waterfountain(parent=ANCESTORY_KEY, xcoords=x, ycoords=y).put()
-        # newImage=ImageInfo.query(ImageInfo.location==location).get()
-        # newImage.image_url=imageurl
-        # newImage.url=URL
-        # newImage.put()
+        print x, y, type
+        if type == 0:
+            bathroom(parent=ANCESTORY_KEYB, xcoords=x, ycoords=y).put()
+        else:
+            waterfountain(parent=ANCESTORY_KEY, xcoords=x, ycoords=y).put()
+
         homepage = the_jinja_env.get_template('/templates/addImage.html')
-        print(GetImages())
+        print(GetImages()  + bathroom.query().fetch())
         self.response.write(homepage.render({"images":GetImages()}))
 
 class Contact(webapp2.RequestHandler):
@@ -96,8 +105,8 @@ class Contact(webapp2.RequestHandler):
         self.response.write(t.render())
 
 app = webapp2.WSGIApplication([
-('/',Home)
-,
+('/',water),
+('/bathroom', bath),
 ('/upload',UploadLocation),
 # ('/load', loadImages),
 ('/contact',Contact)
