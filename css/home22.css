@@ -4,10 +4,9 @@ body{
 }
 .top_nav{
   width: 100%;
-  height: 10vh;
+  height: inherit;
   background-color:#113788;
-  min-height: 50px;
-  max-height: 60px;
+  position: relative;
 }
 
 .nav_op_left{
@@ -15,25 +14,105 @@ body{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  height: 100%;
 }
-.nav_op_left li {
-    outline-color: #FFCC00;
+/* .nav_op_left li {
+    border-color: #FFCC00;
     float: left;
-    height: 20px;
+} */
+
+#nav_a_left {
+    float: left;
 }
+
+#nav_a_right {
+    float: right;
+}
+
 
 .nav_a {
     text-decoration: none;
     color: #FFCC00;
     display: inline-block;
     text-align: center;
-    padding: 15px 5vh;
+    padding: 1em;
 }
 
 .nav_a:hover {
     background-color: #FFCC00;
     color: #113788;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: #FFCC00;
+    text-align: center;
+    padding: 1em;
+    text-decoration: none;
+    transition: background .5s;
+}
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+
+li.dropdown {
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px .5em 1em 0px rgba(0,0,0,0.2);
+    z-index: 10;
+    border-style: solid;
+    border-top-color: red;
+    border-bottom-left-radius: .4em;
+    border-bottom-right-radius: .4em;
+    position: fixed;
+    overflow: hidden; 
+}
+.dropdown-content a {
+    color: black;
+    padding: .9em 1.0em;
+    text-decoration: none;
+    display: none;
+    text-align: Left;
+    transition: border .4s;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    padding-bottom: calc(.9em - 0.1em);
+    border-bottom-width: .1em;
+    border-color: red;
+    border-bottom-style: solid;
+    border-right-style: solid;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.image {
+    width: 7vh;
+    height: 6vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFCC00;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top:0;
+    bottom: 0;
+    margin-top: auto; 
+    margin-bottom: auto;
+    z-index: 10;
+    border: .1em solid #FFCC00;
+    border-radius: 50%;
+}
+
+.image img{
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
 }
 
   #logo{
