@@ -48,10 +48,9 @@ li a, .dropbtn {
     text-align: center;
     padding: 1em;
     text-decoration: none;
-    transition: background .5s;
 }
 li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #FFCC00;
 }
 
 
@@ -60,16 +59,17 @@ li.dropdown {
 }
 .dropdown-content {
     display: none;
+    position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px .5em 1em 0px rgba(0,0,0,0.2);
-    z-index: 10;
+    z-index: 1;
     border-style: solid;
     border-top-color: red;
     border-bottom-left-radius: .4em;
     border-bottom-right-radius: .4em;
     position: fixed;
-    overflow: hidden; 
+    overflow: hidden;
 }
 .dropdown-content a {
     color: black;
@@ -102,7 +102,7 @@ li.dropdown {
     left: 0;
     top:0;
     bottom: 0;
-    margin-top: auto; 
+    margin-top: auto;
     margin-bottom: auto;
     z-index: 10;
     border: .1em solid #FFCC00;
@@ -136,5 +136,5 @@ li.dropdown {
 
 #map {
         height: 90vh;
-        width: 100vw; 
+        width: 100vw;
       }

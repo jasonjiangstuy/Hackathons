@@ -14,22 +14,19 @@
             <img src="https://library.kissclipart.com/20180829/gq/kissclipart-water-droplet-clipart-drop-water-clip-art-ea0d7fab20467841.jpg"><img>
         </div>
         <ul class="nav_op_left">
-<<<<<<< HEAD
-            <li><a href="./" class="nav_a"> WATER </a></li>
-            <li><a href="./bathroom" class="nav_a"> BATHROOM </a></li>
-=======
-            <li><a href="" class="nav_a dropbtn" id="nav_a_left"> WATER </a>
-            <div class="dropdown-content">
-                <a href="#add_a_water" class="dropdown-content">Add Water Fountain</a>
-                <a href="#filter" class="dropdown-content">Filter</a>
-            </div>
-            
-            </li>
-            <li><a href="" class="nav_a" id="nav_a_left"> BATHROOM </a></li>
-            <li><a href="" class="nav_a" id="nav_a_right">CONTACT</a></li>
-            <li><a href="" class="nav_a" id="nav_a_right">ABOUT US</a></li>
 
->>>>>>> 19eab0ab57291d7fce38e675c0e59e59adc5cd53
+
+            <li class="dropdown"><a href="" class="dropbtn" id="nav_a_left"> WATER </a>
+            <div class="dropdown-content">
+                <a href="#add_a_water" class="dropdown-content-option">Add Water Fountain</a>
+                <a href="#filter" class="dropdown-content-option">Filter</a>
+            </div>
+
+            </li>
+            <li><a href="./bathroom" class="nav_a" id="nav_a_left"> BATHROOM </a></li>
+            <li><a href="./contact" class="nav_a" id="nav_a_right">CONTACT</a></li>
+            <li><a href="./login" class="nav_a" id="nav_a_right">ABOUT US</a></li>
+
         </ul>
     </div>
     <!-- <nav>
@@ -50,6 +47,7 @@
 
   <div id="map"></div>
 
+<!-- start of JS -->
   <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWYNykoEI-bVYIgavHIqLYkV5jGy87GQ">
     </script>
@@ -110,13 +108,13 @@
 //          console.log(markers);
 
           //to bounce
-          function toggleBounce(markers) {
-            if (markers.getAnimation() !== null) {
-              markers.setAnimation(null);
-            } else {
-              markers.setAnimation(google.maps.Animation.BOUNCE);
-            }
-          }
+          //function toggleBounce(markers) {
+          //  if (markers.getAnimation() !== null) {
+          //    markers.setAnimation(null);
+          //  } else {
+          //    markers.setAnimation(google.maps.Animation.BOUNCE);
+          //  }
+          //}
 
           // Add a marker clusterer to manage the markers.
                    var markerCluster = new MarkerClusterer(map, markers,
@@ -128,14 +126,13 @@
                          {% endfor %}
                        ]
                        //all markers
-
                        var markers = locations.map(function(location, i) {
                          return new google.maps.Marker({
                            position: location,
                            icon: image
                          });
-                         console.log("test" + markers);
-                         markers[i].addListener('click', toggleBounce(markers[i]));
+                        console.log("test");
+                        markers[i].addEventListener('click', toggleBounce(markers[i]));
                        });
         //drawing line
               //finding shortest distance
@@ -149,8 +146,8 @@
                 distance = {lat: distance[0], lng: distance[1]}
               //ploting closest marker
               var closest = new google.maps.Marker({position: distance, icon: image, map: map});
-                closest.addListener('click', toggleBounce(closest));
-debugger
+    //            closest.addListener('click', toggleBounce(closest));
+//debugger
               //drawing line
               var flightPlanCoordinates = [
               pos, distance
